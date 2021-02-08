@@ -16,3 +16,14 @@ git submodule update --init [--recursive]
 ```
 git clone --recurse-submodules <main project>
 ```
+## 拉取子模块更新
+当在主项目执行`git pull`时并不会把子模块中的更新拉取到本地，因此要更新子模块还需要一些额外的操作：
+
+- 方式一：
+进入到子模块目录后执行`git fetch`和`git merge`。执行`git diff --submodule`可查看子模块中的更新。
+
+- 方式二：
+在主项目中执行
+```
+git submodule update --remote [path of submodule, 如果省略会拉取所有submodules更新]
+```
