@@ -1,0 +1,3 @@
+[submodule "src/sub-modules/pagination"]
+	path = src/sub-modules/pagination
+	url = https://github.com/vivianink1991/pagination.git
