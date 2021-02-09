@@ -27,8 +27,16 @@ git clone --recurse-submodules <main project>
 ```
 git submodule update --remote [path of submodule, 如果省略会拉取所有submodules更新]
 ```
+
+## 在main project中更新了子模块
 需要注意的是，拉取了子模块更新后，子模块将留在一个称作"游离的HEAD"状态（有一个commit id），这样意味着没有本地的工作分支跟踪改动（main project仍可以推送子模块的更新到远程）。
-如果需要在main project中修改子模块怎么办？解决这个问题需要额外做两件事：
+解决这个问题需要额外做两件事：
 - 进入子模块checkout出目标分支例如`master`
 - 运行`git submodule update --remote --merge`来从上游拉取新工作并合并到本地分支上
 
+如果在main project中更改了子模块，如果只推送到main project而不推送到子模块，会导致别人更新子模块时失败。可在执行`push`时进行子模块推送检查：
+```
+git push --recurse-submodules=check/on-demand
+```
+## 参考
+- [Git 工具 - 子模块](https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%AD%90%E6%A8%A1%E5%9D%97)
